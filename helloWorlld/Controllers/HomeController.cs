@@ -12,6 +12,11 @@ namespace helloWorlld.Controllers
 
         public IActionResult Index()
         {
+            if (!String.IsNullOrEmpty(HttpContext.Request.Cookies["who"]))
+                ViewData["who"] = HttpContext.Request.Cookies["who"];
+            else
+                ViewData["who"] = "добрый человек";
+
             return View();
         }
 
@@ -25,7 +30,9 @@ namespace helloWorlld.Controllers
         public IActionResult Save(string who, string what) {
             ViewData["who"] = who;
             ViewData["what"] = what;
-            
+
+            HttpContext.Response.Cookies.Append("who", who);
+
             return View();
         }
 
