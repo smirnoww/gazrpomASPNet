@@ -13,18 +13,13 @@ namespace helloWorlld
     public class Startup
     {
         // свойство, которое будет хранить конфигурацию
-        public IConfiguration AppConfiguration { get; set; }
+        public IConfiguration Configuration { get; }
 
         // TODO: Использовать конструктор (IConfiguration).
         // TODO: config.json переиеновать в appsettings.json, что бы автоматически загружался в конструктор
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("config.json");
-            // создаем конфигурацию
-            AppConfiguration = builder.Build();
-
+            Configuration = configuration;
         }
 
 
