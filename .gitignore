@@ -1,0 +1,5 @@
+.vs/
+helloWorlld/bin/
+helloWorlld/obj/
+*.dll
+*.pdb
