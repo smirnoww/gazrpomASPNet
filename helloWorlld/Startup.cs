@@ -15,6 +15,8 @@ namespace helloWorlld
         // свойство, которое будет хранить конфигурацию
         public IConfiguration AppConfiguration { get; set; }
 
+        // TODO: Использовать конструктор (IConfiguration).
+        // TODO: config.json переиеновать в appsettings.json, что бы автоматически загружался в конструктор
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()

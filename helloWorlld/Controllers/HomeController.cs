@@ -12,10 +12,10 @@ namespace helloWorlld.Controllers
     public class HomeController : baseController
     {
 
-        private IHostingEnvironment _hostingEnvironment;
+        private IConfiguration _configuration;
 
-        public HomeController(IHostingEnvironment hostingEnvironment) {
-            _hostingEnvironment = hostingEnvironment;
+        public HomeController(IConfiguration Configuration) {
+            _configuration = Configuration;
         }
 
         public IActionResult Index()
@@ -50,14 +50,7 @@ namespace helloWorlld.Controllers
         }
 
         public string getCompanyName() {
-            IHostingEnvironment env = this._hostingEnvironment;
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("config.json");
-            // создаем конфигурацию
-            IConfiguration AppConfiguration = builder.Build();
-            return AppConfiguration["CompanyName"];
+            return _configuration["CompanyName"];
         }
     }
 }
