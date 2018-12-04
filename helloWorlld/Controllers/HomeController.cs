@@ -25,6 +25,7 @@ namespace helloWorlld.Controllers
             else
                 ViewData["who"] = "добрый человек";
 
+            ViewData["CompanyName"] = _configuration.GetSection("CompanyName");
             return View();
         }
 
