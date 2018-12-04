@@ -4,11 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 
 namespace helloWorlld.Controllers
 {
     public class HomeController : baseController
     {
+
+        private IHostingEnvironment _hostingEnvironment;
+
+        public HomeController(IHostingEnvironment hostingEnvironment) {
+            _hostingEnvironment = hostingEnvironment;
+        }
 
         public IActionResult Index()
         {
@@ -39,6 +47,17 @@ namespace helloWorlld.Controllers
         public VirtualFileResult GetCat() {
             var filepath = Path.Combine("~/Images", "cat.jpg");
             return File(filepath,"image/jpeg");
+        }
+
+        public string getCompanyName() {
+            IHostingEnvironment env = this._hostingEnvironment;
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("config.json");
+            // создаем конфигурацию
+            IConfiguration AppConfiguration = builder.Build();
+            return AppConfiguration["CompanyName"];
         }
     }
 }

@@ -13,7 +13,9 @@ namespace helloWorlld.Controllers
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (context.HttpContext.Request.Headers.ContainsKey("User-Agent") &&
-                Regex.IsMatch(context.HttpContext.Request.Headers["User-Agent"], @"Trident/7.*rv:11"))
+                false
+                )
+                // Regex.IsMatch(context.HttpContext.Request.Headers["User-Agent"], @"Trident/7.*rv:11"))
             {
                 context.Result = Content("Internet Explorer запрещён!!!");
             }
