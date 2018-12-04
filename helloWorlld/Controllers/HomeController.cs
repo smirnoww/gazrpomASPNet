@@ -4,11 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 
 namespace helloWorlld.Controllers
 {
     public class HomeController : baseController
     {
+
+        private IConfiguration _configuration;
+
+        public HomeController(IConfiguration Configuration) {
+            _configuration = Configuration;
+        }
 
         public IActionResult Index()
         {
@@ -17,6 +25,7 @@ namespace helloWorlld.Controllers
             else
                 ViewData["who"] = "добрый человек";
 
+            ViewData["CompanyName"] = _configuration.GetSection("CompanyName");
             return View();
         }
 
@@ -39,6 +48,10 @@ namespace helloWorlld.Controllers
         public VirtualFileResult GetCat() {
             var filepath = Path.Combine("~/Images", "cat.jpg");
             return File(filepath,"image/jpeg");
+        }
+
+        public string getCompanyName() {
+            return _configuration["CompanyName"];
         }
     }
 }

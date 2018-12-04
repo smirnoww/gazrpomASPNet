@@ -14,16 +14,13 @@ namespace helloWorlld
     public class Startup
     {
         // свойство, которое будет хранить конфигурацию
-        public IConfiguration AppConfiguration { get; set; }
+        public IConfiguration Configuration { get; }
 
-        public Startup(IHostingEnvironment env)
+        // TODO: Использовать конструктор (IConfiguration).
+        // TODO: config.json переиеновать в appsettings.json, что бы автоматически загружался в конструктор
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("config.json");
-            // создаем конфигурацию
-            AppConfiguration = builder.Build();
-
+            Configuration = configuration;
         }
 
 
@@ -32,6 +29,7 @@ namespace helloWorlld
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSingleton<IConfiguration>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 {
   "color": "red",
-  "text": "welcome!"
+  "text": "welcome!",
+  "CompanyName": "Газпром центрремонт из config.json"
 }
