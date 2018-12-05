@@ -28,7 +28,7 @@ namespace helloWorlld.Controllers
             else
                 ViewData["who"] = "добрый человек";
 
-            ViewData["CompanyName"] = _configuration.GetSection("CompanyName");
+            ViewData["CompanyName"] = Win1251ToUTF8(_configuration.GetSection("CompanyName").Value);
             return View();
         }
 
@@ -64,6 +64,24 @@ namespace helloWorlld.Controllers
             // return Content(_configuration["CompanyName"], "text/html", Encoding.UTF8);
 
             return _configuration["CompanyName"];
+        }
+
+        static private string Win1251ToUTF8(string source)
+        {
+            /*
+            Encoding utf8 = Encoding.GetEncoding("utf-8");
+            Encoding win1251 = Encoding.GetEncoding("win-1251");
+            byte[] utf8Bytes = win1251.GetBytes(source);
+            byte[] win1251Bytes = Encoding.Convert(win1251, utf8, utf8Bytes);
+            source = win1251.GetString(win1251Bytes);
+            */
+            Encoding win1251 = Encoding.GetEncoding(1251);
+            Encoding utf8 = Encoding.UTF8;
+            byte[] win1251Bytes = win1251.GetBytes(source);
+            byte[] utf8Bytes = Encoding.Convert(win1251, utf8, win1251Bytes);
+            string utf8String = Encoding.UTF8.GetString(utf8Bytes);
+
+            return source;
         }
     }
 
