@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "helloWorlld", "helloWorlld\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "routeLaba", "routeLaba\routeLaba.csproj", "{468073FB-98EE-4BF1-859C-5F5F10A2801E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Views", "Views\Views.csproj", "{961B2F95-42C6-4F01-A349-BB48A86007DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{468073FB-98EE-4BF1-859C-5F5F10A2801E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{468073FB-98EE-4BF1-859C-5F5F10A2801E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{468073FB-98EE-4BF1-859C-5F5F10A2801E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{961B2F95-42C6-4F01-A349-BB48A86007DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{961B2F95-42C6-4F01-A349-BB48A86007DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{961B2F95-42C6-4F01-A349-BB48A86007DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{961B2F95-42C6-4F01-A349-BB48A86007DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
