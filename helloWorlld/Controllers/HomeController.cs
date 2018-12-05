@@ -52,15 +52,15 @@ namespace helloWorlld.Controllers
             return File(filepath,"image/jpeg");
         }
 
-        public ContentResult getCompanyName() {
+        public string getCompanyName() {
             // var res = new IActionResult();
             //var HttpResponse Response = HttpContext.Current.Response;
             //HttpContext.Response.ContentType = "text/html; charset=utf-8";
-
+            Response.Headers["Content-Type"] = "charset=utf-8";
             // TODO : fix encoding
-            return Content(_configuration["CompanyName"], "text/html", Encoding.UTF8);
+            // return Content(_configuration["CompanyName"], "text/html", Encoding.UTF8);
 
-            //return 
+            return _configuration["CompanyName"];
         }
     }
 }
