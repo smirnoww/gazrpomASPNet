@@ -28,6 +28,8 @@ namespace helloWorlld.Controllers
             else
                 ViewData["who"] = "добрый человек";
 
+                //ViewBag.jobs = new SelectList("пахать", "копать");
+
             //  ViewData["CompanyName"] = Win1251ToUTF8(_configuration.GetSection("CompanyName").Value);
             ViewData["CompanyName"] = _configuration.GetSection("CompanyName").Value;
             return View();

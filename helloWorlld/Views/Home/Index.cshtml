@@ -1,16 +1,47 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = null;
 }
 
+
 <h2>Запись добровольцев на субботник</h2>
 <p>Добрый день, @ViewData["who"]</p>
-<form action="/Home/Save" method="post">
-    Кто записался: <input type="text" name="who" size="30" value="кто-нибудь"><br>
-    На что записался: <input type="text" name="what" size="30" value="пить пиво"><br>
+@*
+        <form action="/Home/Save" method="post">
+            Кто записался: <input type="text" name="who" size="30" value="кто-нибудь"><br>
+
+            На что записался:
+            <input type="text" name="what" size="30" value="пить пиво"><br>
+
+
+    <input type="submit">
+    </form>
+
+*@
+
+<form asp-antiforgery="true" method="post" asp-action="Save" asp-controller="Home">
+    <label for="who">Кто записался:</label>
+    <input name="who" />
+
+    <br />
+
+    <label for="what">Что делать:</label>
+    <select name="what">
+        <option value="Пахать">Пахать</option>
+        <option value="Копать">Копать</option>
+        <option value="Контролировать копателей">Контролировать копателей</option>
+        <option value="Контролировать пахателей">Контролировать пахателей</option>
+        <option value="Контролировать контролёров">Контролировать контролёров</option>
+    </select>
+
+    <br />
+
     <input type="submit">
 </form>
+
+
+
 @ViewData["CompanyName"]<br>
 <a href="https://localhost:44392/Home/getCompanyName">getCompanyName</a>
 
