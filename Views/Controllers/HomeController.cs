@@ -8,6 +8,9 @@ using Views.Models;
 
 namespace Views.Controllers
 {
+
+    // TODO : check "TempData is used to pass data between two consecutive requests."
+
     public class HomeController : Controller
     {
         public IActionResult Index()
