@@ -7,6 +7,7 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using System.Text;
+using helloWorlld.Classes;
 
 namespace helloWorlld.Controllers
 {
@@ -68,16 +69,4 @@ namespace helloWorlld.Controllers
 
   
 
-}
-
-public class Assignment
-{
-    public string Person ;
-    public string Job ;
-
-    public Assignment(string p, string j)
-    {
-        Person = p;
-        Job = j;
-    }
 }
