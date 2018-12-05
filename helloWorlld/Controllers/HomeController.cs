@@ -28,7 +28,8 @@ namespace helloWorlld.Controllers
             else
                 ViewData["who"] = "добрый человек";
 
-            ViewData["CompanyName"] = Win1251ToUTF8(_configuration.GetSection("CompanyName").Value);
+            //  ViewData["CompanyName"] = Win1251ToUTF8(_configuration.GetSection("CompanyName").Value);
+            ViewData["CompanyName"] = _configuration.GetSection("CompanyName").Value;
             return View();
         }
 
