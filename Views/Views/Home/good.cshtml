@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "good";
+    TimeSpan start = new TimeSpan(0, 0, 0); //0 o'clock
+    TimeSpan end = new TimeSpan(12, 0, 0); //12 o'clock
+    TimeSpan now = DateTime.Now.TimeOfDay;
+
+    string timesOfDay;
+
+    if (((now > start) && (now < end)))
+    {
+        timesOfDay = "Morning";
+    }
+    else
+    {
+        timesOfDay = "Evening";
+    }
+
+}
+
+<h2>Good @timesOfDay</h2>
+
