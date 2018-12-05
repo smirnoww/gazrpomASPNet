@@ -22,9 +22,13 @@ namespace Views.Controllers
                 TimeSpan now = DateTime.Now.TimeOfDay;
 
                 if (((now > start) && (now < end)))
+                {
                     return View("Morning");
+                }
                 else
+                {
                     return View("Evening");
+                }
             }
             catch
             {
