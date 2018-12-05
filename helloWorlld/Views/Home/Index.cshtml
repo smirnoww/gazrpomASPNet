@@ -14,4 +14,4 @@
 @ViewData["CompanyName"]<br>
 <a href="https://localhost:44392/Home/getCompanyName">getCompanyName</a>
 
-@Html.Partial("Copyright")
+@{await Html.RenderPartialAsync("Copyright");}
