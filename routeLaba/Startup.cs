@@ -34,6 +34,8 @@ namespace routeLaba
 
             app.Run(async (context) =>
             {
+                // Q : Как программно задать кодировку один раз при инициализации приложения?
+                // A : 
                 context.Response.ContentType = "text/html; charset=utf-8";
                 await context.Response.WriteAsync("Напишите в адресной строке domen:port/фамилия/имя и мы их склеим");
             });

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
+using System.Text;
 
 namespace helloWorlld.Controllers
 {
@@ -14,6 +15,7 @@ namespace helloWorlld.Controllers
 
         private IConfiguration _configuration;
 
+        // Q : что передаётся в метод контроллера? варианты определения? Нужно ли для этого добавлять службу в качестве синглтона?(нет)
         public HomeController(IConfiguration Configuration) {
             _configuration = Configuration;
         }
@@ -50,8 +52,15 @@ namespace helloWorlld.Controllers
             return File(filepath,"image/jpeg");
         }
 
-        public string getCompanyName() {
-            return _configuration["CompanyName"];
+        public ContentResult getCompanyName() {
+            // var res = new IActionResult();
+            //var HttpResponse Response = HttpContext.Current.Response;
+            //HttpContext.Response.ContentType = "text/html; charset=utf-8";
+
+            // TODO : fix encoding
+            return Content(_configuration["CompanyName"], "text/html", Encoding.UTF8);
+
+            //return 
         }
     }
 }
