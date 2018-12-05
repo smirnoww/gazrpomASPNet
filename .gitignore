@@ -1,5 +1,7 @@
 .vs/
 helloWorlld/bin/
 helloWorlld/obj/
+Views/bin/
+Views/obj/
 *.dll
 *.pdb

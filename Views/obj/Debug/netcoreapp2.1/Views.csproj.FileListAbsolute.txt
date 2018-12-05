@@ -31,3 +31,5 @@ C:\smirnoww\webApps\helloWorlld\Views\obj\Debug\netcoreapp2.1\Views.pdb
 C:\smirnoww\webApps\helloWorlld\Views\obj\Debug\netcoreapp2.1\Views.csproj.CopyComplete
 C:\smirnoww\webApps\helloWorlld\Views\obj\Debug\netcoreapp2.1\Razor\Views\Home\Morning.g.cshtml.cs
 C:\smirnoww\webApps\helloWorlld\Views\obj\Debug\netcoreapp2.1\Razor\Views\Home\Evening.g.cshtml.cs
+C:\smirnoww\webApps\helloWorlld\Views\obj\Debug\netcoreapp2.1\Views.csprojAssemblyReference.cache
+C:\smirnoww\webApps\helloWorlld\Views\obj\Debug\netcoreapp2.1\Razor\Views\Home\good.g.cshtml.cs

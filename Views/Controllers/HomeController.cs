@@ -29,6 +29,11 @@ namespace Views.Controllers
             }
         }
 
+        public IActionResult good()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
