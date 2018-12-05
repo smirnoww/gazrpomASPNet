@@ -18,7 +18,7 @@ namespace Views.Controllers
                 TimeSpan end = new TimeSpan(12, 0, 0); //12 o'clock
                 TimeSpan now = DateTime.Now.TimeOfDay;
 
-                if (!((now > start) && (now < end)))
+                if (((now > start) && (now < end)))
                     return View("Morning");
                 else
                     return View("Evening");
