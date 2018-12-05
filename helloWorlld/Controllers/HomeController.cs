@@ -44,12 +44,14 @@ namespace helloWorlld.Controllers
 
             HttpContext.Response.Cookies.Append("who", who);
 
-            return View();
+            var model = new Assignment(who,what);
+
+            return View(model);
         }
 
         public VirtualFileResult GetCat() {
             var filepath = Path.Combine("~/Images", "cat.jpg");
-            return File(filepath,"image/jpeg");
+            return File(filepath, "image/jpeg");
         }
 
         public string getCompanyName() {
@@ -62,5 +64,20 @@ namespace helloWorlld.Controllers
 
             return _configuration["CompanyName"];
         }
+    }
+
+  
+
+}
+
+public class Assignment
+{
+    public string Person ;
+    public string Job ;
+
+    public Assignment(string p, string j)
+    {
+        Person = p;
+        Job = j;
     }
 }
