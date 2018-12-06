@@ -45,4 +45,8 @@
 @ViewData["CompanyName"]<br>
 <a href="https://localhost:44392/Home/getCompanyName">getCompanyName</a>
 
+@*
+В PartialView можно передавать модели/данные в качестве параметра
+Там, так же доступны все данные из этого представления
+*@
 @{await Html.RenderPartialAsync("Copyright");}
