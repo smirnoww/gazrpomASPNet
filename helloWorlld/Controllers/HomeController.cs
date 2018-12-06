@@ -26,9 +26,19 @@ namespace helloWorlld.Controllers
 
         public IActionResult Index()
         {
-            string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
-            SqlConnection cn = new SqlConnection(cnStr);
-            cn.Open();
+            try
+            {
+                string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB013;Integrated Security=True";
+                SqlConnection cn = new SqlConnection(cnStr);
+                cn.Open();
+            }
+            catch (Exception e)
+            {
+                ViewData["MessageType"] = "Критичная ошибка";
+                ViewData["MessageText"] = "Ошибка подключения к БД";
+                ViewData["MessageTechDetails"] = e.Message;
+                return View("Message");
+            }
 
             if (!String.IsNullOrEmpty(HttpContext.Request.Cookies["who"]))
                 ViewData["who"] = HttpContext.Request.Cookies["who"];
