@@ -30,7 +30,7 @@
     <select name="what">
         @foreach (KeyValuePair<int, string> j in ViewBag.jobs_dic)
         {
-                <option value="j.Key">@j.Value</option>
+                <option value="@j.Key">@j.Value</option>
         }
     </select>
 
