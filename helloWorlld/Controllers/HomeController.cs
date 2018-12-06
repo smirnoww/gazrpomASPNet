@@ -112,10 +112,7 @@ namespace helloWorlld.Controllers
             cn = new SqlConnection(cnStr);
             cn.Open();
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = sql;
+            SqlCommand cmd = new SqlCommand(sql,cn);
             int res = cmd.ExecuteNonQuery();
             cn.Close();
             return res;
