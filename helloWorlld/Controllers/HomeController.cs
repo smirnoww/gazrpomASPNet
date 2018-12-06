@@ -26,27 +26,6 @@ namespace helloWorlld.Controllers
 
         public IActionResult Index()
         {
-            SqlConnection cn;
-
-            try
-            {
-                string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
-                cn = new SqlConnection(cnStr);
-                cn.Open();
-            }
-            catch (Exception e)
-            {
-                ViewData["MessageType"] = "Критичная ошибка";
-                ViewData["MessageText"] = "Ошибка подключения к БД";
-                ViewData["MessageTechDetails"] = e.Message;
-                return View("Message");
-            }
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Volunteers (Person) values ('Ивановвв')";
-            cmd.ExecuteNonQuery();
 
             if (!String.IsNullOrEmpty(HttpContext.Request.Cookies["who"]))
                 ViewData["who"] = HttpContext.Request.Cookies["who"];
@@ -74,6 +53,20 @@ namespace helloWorlld.Controllers
             HttpContext.Response.Cookies.Append("who", who);
 
             var model = new Assignment(who,what);
+
+            // SQL injection: ');delete from Volunteers;select ('
+
+            try
+            {
+                ExecNonQuerySQL("INSERT INTO Volunteers (Person) VALUES ('"+who+"')");
+            }
+            catch (Exception e)
+            {
+                ViewData["MessageType"] = "Критичная ошибка";
+                ViewData["MessageText"] = "Ошибка подключения к БД";
+                ViewData["MessageTechDetails"] = e.Message;
+                return View("Message");
+            }
 
             return View(model);
         }
@@ -111,8 +104,24 @@ namespace helloWorlld.Controllers
 
             return source;
         }
-    }
 
-  
+        private int ExecNonQuerySQL(string sql) {
+            SqlConnection cn;
+
+            string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
+            cn = new SqlConnection(cnStr);
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = sql;
+            int res = cmd.ExecuteNonQuery();
+            cn.Close();
+            return res;
+        }
+    }   //  public class HomeController
+
+
 
 }
