@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using System.Text;
 using helloWorlld.Classes;
+using System.Data;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace helloWorlld.Controllers
 {
@@ -23,6 +26,10 @@ namespace helloWorlld.Controllers
 
         public IActionResult Index()
         {
+            string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
+            SqlConnection cn = new SqlConnection(cnStr);
+            cn.Open();
+
             if (!String.IsNullOrEmpty(HttpContext.Request.Cookies["who"]))
                 ViewData["who"] = HttpContext.Request.Cookies["who"];
             else
