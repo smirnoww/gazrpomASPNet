@@ -32,18 +32,25 @@ namespace helloWorlld.Controllers
             else
                 ViewData["who"] = "добрый человек";
 
-            //ViewBag.jobs = new SelectList("пахать", "копать");
-
-            //  ViewData["CompanyName"] = Win1251ToUTF8(_configuration.GetSection("CompanyName").Value);
-
-            SqlDataReader jobs_rd = ExecReaderSQL("uspJobList");
-
             Dictionary<int, string> jobs_dic = new Dictionary<int, string>();
-            if (jobs_rd.HasRows)
-            {
-                while (jobs_rd.Read())
-                    jobs_dic.Add(jobs_rd.GetInt32(0), jobs_rd.GetString(1));
-            }
+
+            SqlConnection cn;
+
+            string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
+            cn = new SqlConnection(cnStr);
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand("uspJobList", cn);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+            DataTable tblJobs = ds.Tables[0];
+
+            foreach(DataRow row in tblJobs.Rows)
+                jobs_dic.Add((int)row["id"] , row["jobname"].ToString());
+
+
 
             ViewData["CompanyName"] = _configuration.GetSection("CompanyName").Value;
             ViewBag.jobs_dic = jobs_dic;
