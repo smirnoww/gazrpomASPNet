@@ -26,10 +26,12 @@ namespace helloWorlld.Controllers
 
         public IActionResult Index()
         {
+            SqlConnection cn;
+
             try
             {
-                string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB013;Integrated Security=True";
-                SqlConnection cn = new SqlConnection(cnStr);
+                string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
+                cn = new SqlConnection(cnStr);
                 cn.Open();
             }
             catch (Exception e)
@@ -39,6 +41,12 @@ namespace helloWorlld.Controllers
                 ViewData["MessageTechDetails"] = e.Message;
                 return View("Message");
             }
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert into Volunteers (Person) values ('Ивановвв')";
+            cmd.ExecuteNonQuery();
 
             if (!String.IsNullOrEmpty(HttpContext.Request.Cookies["who"]))
                 ViewData["who"] = HttpContext.Request.Cookies["who"];
