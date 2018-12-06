@@ -36,7 +36,7 @@ namespace helloWorlld.Controllers
 
             //  ViewData["CompanyName"] = Win1251ToUTF8(_configuration.GetSection("CompanyName").Value);
 
-            SqlDataReader jobs_rd = ExecReaderSQL("select id, jobname from Jobs");
+            SqlDataReader jobs_rd = ExecReaderSQL("uspJobList");
 
             Dictionary<int, string> jobs_dic = new Dictionary<int, string>();
             if (jobs_rd.HasRows)
@@ -70,7 +70,24 @@ namespace helloWorlld.Controllers
 
             try
             {
-                ExecNonQuerySQL("INSERT INTO Volunteers (Person) VALUES ('"+who+"')");
+                SqlConnection cn;
+
+                string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
+                cn = new SqlConnection(cnStr);
+                cn.Open();
+
+                SqlCommand cmd = new SqlCommand("uspInsertVolunteers", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter nameParam = new SqlParameter
+                {
+                    ParameterName = "@Volunteer",
+                    Value = who
+                };
+                cmd.Parameters.Add(nameParam);
+
+                int res = cmd.ExecuteNonQuery();
+                cn.Close();
             }
             catch (Exception e)
             {
