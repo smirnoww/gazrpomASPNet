@@ -28,11 +28,10 @@
 
     <label for="what">Что делать:</label>
     <select name="what">
-        <option value="Пахать">Пахать</option>
-        <option value="Копать">Копать</option>
-        <option value="Контролировать копателей">Контролировать копателей</option>
-        <option value="Контролировать пахателей">Контролировать пахателей</option>
-        <option value="Контролировать контролёров">Контролировать контролёров</option>
+        @foreach (KeyValuePair<int, string> j in ViewBag.jobs_dic)
+        {
+                <option value="j.Key">@j.Value</option>
+        }
     </select>
 
     <br />

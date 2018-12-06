@@ -32,10 +32,22 @@ namespace helloWorlld.Controllers
             else
                 ViewData["who"] = "добрый человек";
 
-                //ViewBag.jobs = new SelectList("пахать", "копать");
+            //ViewBag.jobs = new SelectList("пахать", "копать");
 
             //  ViewData["CompanyName"] = Win1251ToUTF8(_configuration.GetSection("CompanyName").Value);
+
+            SqlDataReader jobs_rd = ExecReaderSQL("select id, jobname from Jobs");
+
+            Dictionary<int, string> jobs_dic = new Dictionary<int, string>();
+            if (jobs_rd.HasRows)
+            {
+                while (jobs_rd.Read())
+                    jobs_dic.Add(jobs_rd.GetInt32(0), jobs_rd.GetString(1));
+            }
+
             ViewData["CompanyName"] = _configuration.GetSection("CompanyName").Value;
+            ViewBag.jobs_dic = jobs_dic;
+
             return View();
         }
 
@@ -105,16 +117,30 @@ namespace helloWorlld.Controllers
             return source;
         }
 
-        private int ExecNonQuerySQL(string sql) {
+        private int ExecNonQuerySQL(string sql)
+        {
             SqlConnection cn;
 
             string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
             cn = new SqlConnection(cnStr);
             cn.Open();
 
-            SqlCommand cmd = new SqlCommand(sql,cn);
+            SqlCommand cmd = new SqlCommand(sql, cn);
             int res = cmd.ExecuteNonQuery();
             cn.Close();
+            return res;
+        }
+
+        private SqlDataReader ExecReaderSQL(string sql)
+        {
+            SqlConnection cn;
+
+            string cnStr = @"Data Source=wsclass05stud08;Initial Catalog=DB01;Integrated Security=True";
+            cn = new SqlConnection(cnStr);
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            SqlDataReader res = cmd.ExecuteReader();
             return res;
         }
     }   //  public class HomeController
