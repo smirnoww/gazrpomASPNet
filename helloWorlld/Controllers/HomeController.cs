@@ -112,7 +112,8 @@ namespace helloWorlld.Controllers
             return File(filepath, "image/jpeg");
         }
 
-        public string getCompanyName() {
+        public string getCompanyName()
+        {
             // var res = new IActionResult();
             //var HttpResponse Response = HttpContext.Current.Response;
             //HttpContext.Response.ContentType = "text/html; charset=utf-8";
@@ -122,6 +123,14 @@ namespace helloWorlld.Controllers
 
             return _configuration["CompanyName"];
         }
+
+
+
+        public IActionResult IFrame()
+        {
+            return View();
+        }
+
 
         static private string Win1251ToUTF8(string source)
         {
