@@ -46,7 +46,7 @@ namespace StationeryProject.Controllers
 
             _db.SaveChanges();
 
-            return View();
+            return View(upr);
         }   //  AddRequest()
 
         public IActionResult About()
