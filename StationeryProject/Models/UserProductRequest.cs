@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using StationeryProject.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace StationeryProject.Models
 {
@@ -11,6 +12,9 @@ namespace StationeryProject.Models
         public long Id { get; set; }
         public long UserId { get; set; }
         public long ProductId { get; set; }
+
+        //[Required]
+        [Range(1, 1000, ErrorMessage ="text")]
         public int ProductAmount { get; set; }
 
         private string UserName { get; set; }

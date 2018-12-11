@@ -1,26 +1,35 @@
-﻿@{
+﻿@model StationeryProject.Models.UserProductRequest
+@{
     ViewData["Title"] = "Home Page";
-    Layout = null;
+   // Layout = null;
 }
 
 <form asp-antiforgery="true" asp-controller="Home" asp-action="AddRequest" method="post">
-    <select name="userId">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <br />
+    <select asp-for="UserId">
         @{ foreach (var u in ViewBag.usersCol)
             {
-        <option value="@u.Id">@u.FirstName @u.LastName</option>
+                <option value="@u.Id">@u.FirstName @u.LastName</option>
             }
         }
     </select>
-
-    <select name="productId">
+    <br />
+    <select asp-for="ProductId" >
         @{ foreach (var p in ViewBag.productsCol)
             {
                 <option value="@p.Id">@p.ProductName.ToString()</option>
             }
         }
     </select>
-
-    <input type="number" name="amount" size="4"/>
+    <br />
+    <input asp-for="ProductAmount" type="number" />
+    <span asp-validation-for="ProductAmount"></span>
 
     <input type="submit" />
 </form>
+
+
+@section scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -34,30 +34,38 @@ namespace StationeryProject.Controllers
 
 
         [HttpPost]
-        public IActionResult AddRequest(long UserId, long ProductId, int amount)
+        public IActionResult AddRequest(UserProductRequest upr)
         {
-            UserProductRequest upr = new UserProductRequest(_db);
+            if (ModelState.IsValid)
+            {
 
-            upr.UserId = UserId;
-            upr.ProductId = ProductId;
-            upr.ProductAmount = amount;
+                _db.UserProductRequest.Add(upr);
 
-            _db.UserProductRequest.Add(upr);
+                _db.SaveChanges();
 
-            _db.SaveChanges();
+                var request = from
+                                r in _db.UserProductRequest
+                              join u in _db.SprUser on r.UserId equals u.Id
+                              join p in _db.SprProduct on r.ProductId equals p.Id
+                              select
+                                  new { r.Id, u.FirstName, u.LastName, p.ProductName, r.ProductAmount };
+                request = request.Where(r => r.Id == upr.Id);
 
-            var request = from
-                            r in _db.UserProductRequest
-                            join u in _db.SprUser on r.UserId equals u.Id
-                            join p in _db.SprProduct on r.ProductId equals p.Id
-                          select
-                              new { r.Id, u.FirstName, u.LastName, p.ProductName, r.ProductAmount };
-            request = request.Where(r => r.Id == upr.Id);
+                upr.setProductName(request.First().ProductName);
+                upr.setUserName(request.First().FirstName + " " + request.First().LastName);
 
-            upr.setProductName(request.First().ProductName);
-            upr.setUserName(request.First().FirstName + " " +request.First().LastName);
+                return View(upr);
+            }
+            else
+            {
+                var users = from i in _db.SprUser select i;
+                var products = from i in _db.SprProduct select i;
 
-            return View(upr);
+                ViewBag.usersCol = users;
+                ViewBag.productsCol = products;
+
+                return View("Index");
+            }
 
         }   //  AddRequest()
 
