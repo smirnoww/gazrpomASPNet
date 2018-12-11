@@ -46,15 +46,16 @@ namespace StationeryProject.Controllers
 
             _db.SaveChanges();
 
-/* Эта функциональность перенесена в модель UserProductRequest
             var request = from
                             r in _db.UserProductRequest
                             join u in _db.SprUser on r.UserId equals u.Id
                             join p in _db.SprProduct on r.ProductId equals p.Id
                           select
-                              new { r.Id, u.LastName, p.ProductName, r.ProductAmount };
+                              new { r.Id, u.FirstName, u.LastName, p.ProductName, r.ProductAmount };
             request = request.Where(r => r.Id == upr.Id);
-*/
+
+            upr.setProductName(request.First().ProductName);
+            upr.setUserName(request.First().FirstName + " " +request.First().LastName);
 
             return View(upr);
 
