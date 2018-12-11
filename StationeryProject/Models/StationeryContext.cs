@@ -6,14 +6,6 @@ namespace StationeryProject.Models
 {
     public partial class StationeryContext : DbContext
     {
-        public StationeryContext()
-        {
-        }
-
-        public StationeryContext(DbContextOptions<StationeryContext> options)
-            : base(options)
-        {
-        }
 
         public virtual DbSet<SprProduct> SprProduct { get; set; }
         public virtual DbSet<SprUser> SprUser { get; set; }
