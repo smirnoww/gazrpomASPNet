@@ -14,7 +14,7 @@ namespace StationeryProject.Models
         public long ProductId { get; set; }
 
         //[Required]
-        [Range(1, 1000, ErrorMessage ="text")]
+        [Range(1, 1000, ErrorMessage ="Количество должно быть в интервале от 1 до 1000")]
         public int ProductAmount { get; set; }
 
         private string UserName { get; set; }
