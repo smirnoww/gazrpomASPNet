@@ -46,12 +46,21 @@ namespace StationeryProject.Models
                 entity.Property(e => e.FirstName)
                     .IsRequired()
                     .HasColumnName("firstName")
-                    .HasMaxLength(50);
+                    .HasMaxLength(64);
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
                     .HasColumnName("lastName")
-                    .HasMaxLength(50);
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.Password)
+                    .HasColumnName("Password")
+                    .HasMaxLength(128);
+
+                entity.Property(e => e.Email)
+                    .HasColumnName("Email")
+                    .HasMaxLength(128);
+
             });
 
             modelBuilder.Entity<UserProductRequest>(entity =>

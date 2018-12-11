@@ -12,6 +12,7 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 
+
 namespace helloWorlld.Controllers
 {
     public class HomeController : baseController
@@ -24,6 +25,7 @@ namespace helloWorlld.Controllers
             _configuration = Configuration;
         }
 
+        
         public IActionResult Index()
         {
 

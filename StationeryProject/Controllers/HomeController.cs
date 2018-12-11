@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StationeryProject.Models;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace StationeryProject.Controllers
 {
@@ -20,7 +20,7 @@ namespace StationeryProject.Controllers
            
         }
 
-
+        [Authorize]
         public IActionResult Index()
         {
             var users = from i in _db.SprUser select i;
@@ -34,6 +34,7 @@ namespace StationeryProject.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddRequest(UserProductRequest upr)
         {
             if (ModelState.IsValid)

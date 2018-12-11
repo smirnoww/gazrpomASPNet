@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace helloWorlld
 {
@@ -28,7 +28,14 @@ namespace helloWorlld
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+
             services.AddMvc();
+            
         //    services.AddSingleton<IConfiguration>(Configuration);
         }
 
@@ -39,6 +46,7 @@ namespace helloWorlld
             {
                 app.UseDeveloperExceptionPage();
             }
+
 
             app.UseMvc(routes => {
                 routes.MapRoute(

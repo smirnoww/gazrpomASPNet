@@ -50,16 +50,14 @@ namespace helloWorlld.Models
                 entity.Property(e => e.LastName)
                     .HasColumnName("lastName")
                     .HasMaxLength(64);
+
             });
 
             modelBuilder.Entity<UserProductRequest>(entity =>
             {
                 entity.Property(e => e.ProductAmount).HasColumnName("productAmount");
-
                 entity.Property(e => e.ProductId).HasColumnName("productId");
-
                 entity.Property(e => e.UserId).HasColumnName("userId");
-
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.UserProductRequest)
                     .HasForeignKey(d => d.ProductId)

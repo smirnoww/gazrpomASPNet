@@ -7,14 +7,13 @@ namespace StationeryProject.Models
 {
     public partial class UserProductRequest
     {
-        private StationeryContext _db;
 
         public long Id { get; set; }
         public long UserId { get; set; }
         public long ProductId { get; set; }
 
         //[Required]
-        [Range(1, 1000, ErrorMessage ="text")]
+        [Range(1, 1000, ErrorMessage ="от 1 до 1000")]
         public int ProductAmount { get; set; }
 
         private string UserName { get; set; }
@@ -23,10 +22,7 @@ namespace StationeryProject.Models
         public SprProduct Product { get; set; }
         public SprUser User { get; set; }
 
-        public UserProductRequest(StationeryContext db = null)
-        {
-            _db = db;
-        }
+
 
         public string getUserName()
         {
