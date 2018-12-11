@@ -3,6 +3,8 @@
     ViewData["Title"] = "AddRequest";
 }
 
-<h2>Заявка</h2>
-Ваша заявка №@Model.Id
+Добрый день, @Model.getUserName()!
+<h2>Подтверждение заявки на канцтовары</h2>
+
+Ваша заявка на "@Model.getProductName()" в количестве @Model.ProductAmount шт. принята под №@Model.Id
 

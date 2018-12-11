@@ -36,7 +36,7 @@ namespace StationeryProject.Controllers
         [HttpPost]
         public IActionResult AddRequest(long UserId, long ProductId, int amount)
         {
-            UserProductRequest upr = new UserProductRequest();
+            UserProductRequest upr = new UserProductRequest(_db);
 
             upr.UserId = UserId;
             upr.ProductId = ProductId;
@@ -46,7 +46,18 @@ namespace StationeryProject.Controllers
 
             _db.SaveChanges();
 
+/* Эта функциональность перенесена в модель UserProductRequest
+            var request = from
+                            r in _db.UserProductRequest
+                            join u in _db.SprUser on r.UserId equals u.Id
+                            join p in _db.SprProduct on r.ProductId equals p.Id
+                          select
+                              new { r.Id, u.LastName, p.ProductName, r.ProductAmount };
+            request = request.Where(r => r.Id == upr.Id);
+*/
+
             return View(upr);
+
         }   //  AddRequest()
 
         public IActionResult About()
