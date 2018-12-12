@@ -12,7 +12,8 @@ namespace UnitTestApp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            ViewData["Message"] = "Hello world!";
+            return View("Index");
         }
 
         public IActionResult About()

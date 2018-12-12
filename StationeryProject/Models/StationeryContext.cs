@@ -26,7 +26,7 @@ namespace StationeryProject.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=WSCLASS05tutor;Database=Stationery;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=WSCLASS05STUD08;Database=Stationery;Trusted_Connection=True;");
             }
         }
 

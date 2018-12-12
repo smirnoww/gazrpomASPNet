@@ -34,7 +34,7 @@ namespace StationeryProject.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult AddRequest(UserProductRequest upr)
         {
             if (ModelState.IsValid)
